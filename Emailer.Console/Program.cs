@@ -97,7 +97,7 @@ namespace Emailer
 
                             Console.WriteLine($"Sleeping {{{DateTime.Now.ToLongTimeString()}}}....");
 
-                            DateTime end = DateTime.Now.AddMinutes(1);
+                            DateTime end = DateTime.Now.AddMilliseconds(TimeSpan.FromMilliseconds(60000).TotalMilliseconds);
 
                             while (DateTime.Now < end && !stop)
                             {
