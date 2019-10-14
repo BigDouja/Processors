@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emailer.Console", "Emailer.Console\Emailer.Console.csproj", "{17AAF2E0-EBB1-44EC-A84B-BE1474B3DA2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTPUploader", "FTPUploader\FTPUploader.csproj", "{B2A8E843-65AB-4881-AAEE-F07B14DD910F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{17AAF2E0-EBB1-44EC-A84B-BE1474B3DA2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17AAF2E0-EBB1-44EC-A84B-BE1474B3DA2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17AAF2E0-EBB1-44EC-A84B-BE1474B3DA2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A8E843-65AB-4881-AAEE-F07B14DD910F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A8E843-65AB-4881-AAEE-F07B14DD910F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A8E843-65AB-4881-AAEE-F07B14DD910F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A8E843-65AB-4881-AAEE-F07B14DD910F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

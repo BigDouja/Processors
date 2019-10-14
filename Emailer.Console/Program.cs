@@ -26,7 +26,7 @@ namespace Emailer
 
                 Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
 
-                Task.Run(() =>
+                Task emailEngine = Task.Run(() =>
                 {
                     try
                     {
@@ -36,9 +36,17 @@ namespace Emailer
                         {
                             IEnumerable<EmailRequest> requests = null;
 
-                            using (var dbConn = new SqlConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
+                            foreach (var dbCfgConn in ConfigurationManager.ConnectionStrings.Cast<ConnectionStringSettings>().Skip(1))
                             {
-                                requests = dbConn.Query<EmailRequest>(sql: "GetEmailRequests", commandType: CommandType.StoredProcedure);
+                                using (var dbConn = new SqlConnection(dbCfgConn.ConnectionString))
+                                {
+                                    Console.WriteLine($"Gathering data from {dbConn.DataSource}.{dbConn.Database}....");
+
+                                    if (requests == null)
+                                        requests = dbConn.Query<EmailRequest>(sql: "GetEmailRequests", commandType: CommandType.StoredProcedure);
+                                    else
+                                        requests.Concat(dbConn.Query<EmailRequest>(sql: "GetEmailRequests", commandType: CommandType.StoredProcedure));
+                                }
                             }
 
                             foreach (var emailReq in requests)
