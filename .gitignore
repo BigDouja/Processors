@@ -12,6 +12,7 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+*.config
 
 # Build results
 [Dd]ebug/
@@ -329,5 +330,3 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-Emailer.Console/App.config
-Emailer.Console/App.config
