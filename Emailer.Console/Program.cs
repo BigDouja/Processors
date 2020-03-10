@@ -42,65 +42,59 @@ namespace Emailer
                                 {
                                     Console.WriteLine($"Gathering data from {dbConn.DataSource}.{dbConn.Database}....");
 
-                                    if (requests == null)
-                                        requests = dbConn.Query<EmailRequest>(sql: "GetEmailRequests", commandType: CommandType.StoredProcedure);
-                                    else
-                                        requests.Concat(dbConn.Query<EmailRequest>(sql: "GetEmailRequests", commandType: CommandType.StoredProcedure));
-                                }
-                            }
+                                    requests = dbConn.Query<EmailRequest>(sql: "GetEmailRequests", commandType: CommandType.StoredProcedure);
 
-                            foreach (var emailReq in requests)
-                            {
-                                Console.WriteLine($"Building Email Request #{emailReq.Id}.......");
-
-                                var toAddress = new EmailAddress(emailReq.ToAddress);
-                                var fromAddress = new EmailAddress(emailReq.FromAddress);
-                                var subject = emailReq.Subject;
-                                var plainTextContent = string.Empty;
-                                var htmlContent = emailReq.HtmlBody;
-
-                                var msg = MailHelper.CreateSingleEmail(fromAddress, toAddress, subject, plainTextContent, htmlContent);
-
-                                Console.WriteLine($"Sending Email Request #{emailReq.Id} from {emailReq.FromAddress} to {emailReq.ToAddress}.");
-
-                                bool sent = false;
-                                string statusMessage = null;
-
-                                try
-                                {
-                                    var response = SendEmail(msg).Result;
-
-                                    sent = true;
-
-                                    if (response.StatusCode != System.Net.HttpStatusCode.Accepted && response.StatusCode != System.Net.HttpStatusCode.OK)
+                                    foreach (var emailReq in requests)
                                     {
-                                        string jsonStr = response.Body.ReadAsStringAsync().Result;
-                                        var resObj = JsonConvert.DeserializeObject(jsonStr);
+                                        Console.WriteLine($"Building Email Request #{emailReq.Id}.......");
 
-                                        statusMessage = $"ERROR - {{{response.StatusCode}}}: {resObj.ToString()}";
+                                        var toAddress = new EmailAddress(emailReq.ToAddress);
+                                        var fromAddress = new EmailAddress(emailReq.FromAddress);
+                                        var subject = emailReq.Subject;
+                                        var plainTextContent = string.Empty;
+                                        var htmlContent = emailReq.HtmlBody;
 
-                                        Console.WriteLine($"Error sending email request #{emailReq.Id}.");
-                                        Console.WriteLine($"Status --> {statusMessage}");
-                                    }
-                                    else
-                                        Console.WriteLine($"Email request #{emailReq.Id} has been sent.");
-                                }
-                                finally
-                                {
-                                    using (var dbConn = new SqlConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
-                                    {
-                                        var paramters = new DynamicParameters();
+                                        var msg = MailHelper.CreateSingleEmail(fromAddress, toAddress, subject, plainTextContent, htmlContent);
 
-                                        paramters.Add("@sent", sent, DbType.Boolean, ParameterDirection.Input);
-                                        paramters.Add("@id", emailReq.Id, DbType.Int32, ParameterDirection.Input);
-                                        paramters.Add("@status_message", statusMessage, DbType.String, ParameterDirection.Input);
+                                        Console.WriteLine($"Sending Email Request #{emailReq.Id} from {emailReq.FromAddress} to {emailReq.ToAddress}.");
 
-                                        dbConn.Execute(sql: "UpsertEmailRequest", param: paramters, commandType: CommandType.StoredProcedure);
+                                        bool sent = false;
+                                        string statusMessage = null;
+
+                                        try
+                                        {
+                                            var response = SendEmail(msg).Result;
+
+                                            sent = true;
+
+                                            if (response.StatusCode != System.Net.HttpStatusCode.Accepted && response.StatusCode != System.Net.HttpStatusCode.OK)
+                                            {
+                                                string jsonStr = response.Body.ReadAsStringAsync().Result;
+                                                var resObj = JsonConvert.DeserializeObject(jsonStr);
+
+                                                statusMessage = $"ERROR - {{{response.StatusCode}}}: {resObj.ToString()}";
+
+                                                Console.WriteLine($"Error sending email request #{emailReq.Id}.");
+                                                Console.WriteLine($"Status --> {statusMessage}");
+                                            }
+                                            else
+                                                Console.WriteLine($"Email request #{emailReq.Id} has been sent.");
+                                        }
+                                        finally
+                                        {
+                                            var paramters = new DynamicParameters();
+
+                                            paramters.Add("@sent", sent, DbType.Boolean, ParameterDirection.Input);
+                                            paramters.Add("@id", emailReq.Id, DbType.Int32, ParameterDirection.Input);
+                                            paramters.Add("@status_message", statusMessage, DbType.String, ParameterDirection.Input);
+
+                                            dbConn.Execute(sql: "UpsertEmailRequest", param: paramters, commandType: CommandType.StoredProcedure);
+                                        }
+
+                                        if (stop)
+                                            break;
                                     }
                                 }
-
-                                if (stop)
-                                    break;
                             }
 
                             Console.WriteLine($"Sleeping {{{DateTime.Now.ToLongTimeString()}}}....");

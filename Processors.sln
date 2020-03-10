@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emailer.Console", "Emailer.Console\Emailer.Console.csproj", "{17AAF2E0-EBB1-44EC-A84B-BE1474B3DA2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTPUploader", "FTPUploader\FTPUploader.csproj", "{B2A8E843-65AB-4881-AAEE-F07B14DD910F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTML Parser", "HTML Parser\HTML Parser.csproj", "{2497DBFD-EE24-4B64-B809-F6E81C52C45E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFToday.HTMLParser.Library", "FFToday.HTMLParser.Library\FFToday.HTMLParser.Library.csproj", "{FAC4D7B1-DA87-4B5D-B4DC-8A0B583EAD16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{B2A8E843-65AB-4881-AAEE-F07B14DD910F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2A8E843-65AB-4881-AAEE-F07B14DD910F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2A8E843-65AB-4881-AAEE-F07B14DD910F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2497DBFD-EE24-4B64-B809-F6E81C52C45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2497DBFD-EE24-4B64-B809-F6E81C52C45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2497DBFD-EE24-4B64-B809-F6E81C52C45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2497DBFD-EE24-4B64-B809-F6E81C52C45E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC4D7B1-DA87-4B5D-B4DC-8A0B583EAD16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC4D7B1-DA87-4B5D-B4DC-8A0B583EAD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC4D7B1-DA87-4B5D-B4DC-8A0B583EAD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC4D7B1-DA87-4B5D-B4DC-8A0B583EAD16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
