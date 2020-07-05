@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTPUploader", "FTPUploader\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTML Parser", "HTML Parser\HTML Parser.csproj", "{2497DBFD-EE24-4B64-B809-F6E81C52C45E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFToday.HTMLParser.Library", "FFToday.HTMLParser.Library\FFToday.HTMLParser.Library.csproj", "{FAC4D7B1-DA87-4B5D-B4DC-8A0B583EAD16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFToday.HTMLParser.Library", "FFToday.HTMLParser.Library\FFToday.HTMLParser.Library.csproj", "{FAC4D7B1-DA87-4B5D-B4DC-8A0B583EAD16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Image Processor", "Image Processor\Image Processor.csproj", "{DFD6821D-A02D-43C6-8113-1CDA82DB0B5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FAC4D7B1-DA87-4B5D-B4DC-8A0B583EAD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAC4D7B1-DA87-4B5D-B4DC-8A0B583EAD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAC4D7B1-DA87-4B5D-B4DC-8A0B583EAD16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFD6821D-A02D-43C6-8113-1CDA82DB0B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD6821D-A02D-43C6-8113-1CDA82DB0B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD6821D-A02D-43C6-8113-1CDA82DB0B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD6821D-A02D-43C6-8113-1CDA82DB0B5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
